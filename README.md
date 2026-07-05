@@ -13,6 +13,7 @@
 | Math | KaTeX (`react-katex`) |
 | i18n | i18next + react-i18next (ar/fr, auto-detect + manual switch) |
 | Video | YouTube (unlisted) embeds — no self-hosted video |
+| Mobile | Flutter (Android/iOS/web) student app — same API, same content blocks |
 
 ## Quick start
 
@@ -38,6 +39,22 @@ npm run dev
 ```
 
 Vite proxies `/api` to `http://127.0.0.1:8000` (see `frontend/vite.config.ts`).
+
+### Mobile app (Flutter)
+
+```bash
+cd mobile
+flutter pub get
+flutter run          # device/emulator; APK: flutter build apk --release
+```
+
+The student-facing mobile app consumes the same API and renders the same
+`content.blocks` JSON (LaTeX via `flutter_math_fork`, YouTube links open
+externally). The server URL is configurable on the login screen and defaults
+to `http://10.0.2.2:8000` (Android emulator → host loopback). UI language
+(ar/fr, full RTL/LTR) follows the same rules as the web frontend. Tests:
+`flutter test` (includes a live-API integration test that runs when the
+backend is up on 127.0.0.1:8000).
 
 ## Architecture notes
 
