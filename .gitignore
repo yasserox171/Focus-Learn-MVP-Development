@@ -17,3 +17,6 @@ dist/
 .idea/
 .DS_Store
 nohup.out
+
+# Local scratch content (not part of the project; see sample-content/ instead)
+demo-content/
