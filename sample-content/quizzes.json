@@ -1,0 +1,261 @@
+[
+  {
+    "title": "اختبار: الدوال الحدودية من الدرجة الثانية",
+    "language": "ar",
+    "quiz_type": "lesson",
+    "linked_lesson_title": "الدوال الحدودية من الدرجة الثانية",
+    "level": "bac_sciences_math",
+    "status": "published",
+    "questions": [
+      {
+        "text": "ما هو مميز المعادلة $x^2 - 5x + 6 = 0$؟",
+        "order": 1,
+        "choices": [
+          { "text": "$\\Delta = 1$", "is_correct": true },
+          { "text": "$\\Delta = -1$", "is_correct": false },
+          { "text": "$\\Delta = 25$", "is_correct": false },
+          { "text": "$\\Delta = 49$", "is_correct": false }
+        ]
+      },
+      {
+        "text": "إذا كان $\\Delta < 0$ فإن المعادلة $ax^2+bx+c=0$:",
+        "order": 2,
+        "choices": [
+          { "text": "لها حلان متمايزان", "is_correct": false },
+          { "text": "لها حل مزدوج", "is_correct": false },
+          { "text": "ليس لها حل في $\\mathbb{R}$", "is_correct": true },
+          { "text": "لها ثلاثة حلول", "is_correct": false }
+        ]
+      },
+      {
+        "text": "أفصول رأس المنحنى الممثل للدالة $f(x)=ax^2+bx+c$ هو:",
+        "order": 3,
+        "choices": [
+          { "text": "$\\alpha = -\\dfrac{b}{2a}$", "is_correct": true },
+          { "text": "$\\alpha = \\dfrac{b}{2a}$", "is_correct": false },
+          { "text": "$\\alpha = -\\dfrac{b}{a}$", "is_correct": false },
+          { "text": "$\\alpha = \\dfrac{c}{a}$", "is_correct": false }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Quiz : les fonctions du second degré",
+    "language": "fr",
+    "quiz_type": "lesson",
+    "linked_lesson_title": "Les fonctions polynômes du second degré",
+    "level": "bac_sciences_math",
+    "status": "published",
+    "questions": [
+      {
+        "text": "Quel est le discriminant de $2x^2 - 4x + 2 = 0$ ?",
+        "order": 1,
+        "choices": [
+          { "text": "$\\Delta = 0$", "is_correct": true },
+          { "text": "$\\Delta = 8$", "is_correct": false },
+          { "text": "$\\Delta = -8$", "is_correct": false },
+          { "text": "$\\Delta = 4$", "is_correct": false }
+        ]
+      },
+      {
+        "text": "La forme canonique de $f(x)=a(x-\\alpha)^2+\\beta$ a pour sommet :",
+        "order": 2,
+        "choices": [
+          { "text": "$(\\alpha, \\beta)$", "is_correct": true },
+          { "text": "$(-\\alpha, \\beta)$", "is_correct": false },
+          { "text": "$(\\beta, \\alpha)$", "is_correct": false },
+          { "text": "$(0, \\beta)$", "is_correct": false }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "اختبار: المتتاليات العددية",
+    "language": "ar",
+    "quiz_type": "lesson",
+    "linked_lesson_title": "المتتاليات العددية: الحدودية والهندسية",
+    "level": "bac_sciences_math",
+    "status": "published",
+    "questions": [
+      {
+        "text": "متتالية حسابية حدها الأول $u_0 = 3$ وأساسها $r = 2$. ما هو $u_5$؟",
+        "order": 1,
+        "choices": [
+          { "text": "$13$", "is_correct": true },
+          { "text": "$11$", "is_correct": false },
+          { "text": "$10$", "is_correct": false },
+          { "text": "$16$", "is_correct": false }
+        ]
+      },
+      {
+        "text": "الحد العام لمتتالية هندسية أساسها $q$ وحدها الأول $v_0$ هو:",
+        "order": 2,
+        "choices": [
+          { "text": "$v_n = v_0 \\cdot q^n$", "is_correct": true },
+          { "text": "$v_n = v_0 + nq$", "is_correct": false },
+          { "text": "$v_n = v_0 \\cdot n^q$", "is_correct": false },
+          { "text": "$v_n = q \\cdot n$", "is_correct": false }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "اختبار: قوانين نيوتن",
+    "language": "ar",
+    "quiz_type": "lesson",
+    "linked_lesson_title": "قوانين نيوتن للحركة",
+    "level": "bac_sciences_math",
+    "status": "published",
+    "questions": [
+      {
+        "text": "تنص العلاقة الأساسية للتحريك (القانون الثاني لنيوتن) على أن:",
+        "order": 1,
+        "choices": [
+          { "text": "$\\sum \\vec{F}_{ext} = m\\,\\vec{a}_G$", "is_correct": true },
+          { "text": "$\\sum \\vec{F}_{ext} = \\vec{0}$", "is_correct": false },
+          { "text": "$\\vec{F}_{A/B} = \\vec{F}_{B/A}$", "is_correct": false },
+          { "text": "$P = U \\cdot I$", "is_correct": false }
+        ]
+      },
+      {
+        "text": "حسب مبدأ الفعل ورد الفعل، إذا أثّر $A$ على $B$ بقوة $\\vec{F}_{A/B}$ فإن:",
+        "order": 2,
+        "choices": [
+          { "text": "$\\vec{F}_{B/A} = -\\vec{F}_{A/B}$", "is_correct": true },
+          { "text": "$\\vec{F}_{B/A} = \\vec{F}_{A/B}$", "is_correct": false },
+          { "text": "$\\vec{F}_{B/A} = \\vec{0}$", "is_correct": false },
+          { "text": "$\\vec{F}_{B/A} = 2\\vec{F}_{A/B}$", "is_correct": false }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "اختبار: التوتر الكهربائي والقدرة",
+    "language": "ar",
+    "quiz_type": "lesson",
+    "linked_lesson_title": "التوتر الكهربائي والقدرة",
+    "level": "tronc_commun",
+    "status": "published",
+    "questions": [
+      {
+        "text": "حسب قانون أوم، التوتر بين مربطي موصل أومي هو:",
+        "order": 1,
+        "choices": [
+          { "text": "$U = R \\cdot I$", "is_correct": true },
+          { "text": "$U = \\dfrac{I}{R}$", "is_correct": false },
+          { "text": "$U = R + I$", "is_correct": false },
+          { "text": "$U = R \\cdot I^2$", "is_correct": false }
+        ]
+      },
+      {
+        "text": "موصل أومي مقاومته $R = 10\\,\\Omega$ يجتازه تيار شدته $I = 2\\,A$. ما هي القدرة المستهلكة؟",
+        "order": 2,
+        "choices": [
+          { "text": "$40\\,W$", "is_correct": true },
+          { "text": "$20\\,W$", "is_correct": false },
+          { "text": "$12\\,W$", "is_correct": false },
+          { "text": "$5\\,W$", "is_correct": false }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "اختبار: الخلية",
+    "language": "ar",
+    "quiz_type": "lesson",
+    "linked_lesson_title": "الخلية: الوحدة البنيوية للكائنات الحية",
+    "level": "tronc_commun",
+    "status": "published",
+    "questions": [
+      {
+        "text": "أي عنصر من العناصر التالية يوجد في الخلية النباتية ولا يوجد في الخلية الحيوانية؟",
+        "order": 1,
+        "choices": [
+          { "text": "الجدار السيليلوزي", "is_correct": true },
+          { "text": "الغشاء السيتوبلازمي", "is_correct": false },
+          { "text": "النواة", "is_correct": false },
+          { "text": "السيتوبلازم", "is_correct": false }
+        ]
+      },
+      {
+        "text": "ما هي بنية الخلية التي تحتوي على المادة الوراثية وتتحكم في نشاطها؟",
+        "order": 2,
+        "choices": [
+          { "text": "النواة", "is_correct": true },
+          { "text": "الفجوة", "is_correct": false },
+          { "text": "الغشاء السيتوبلازمي", "is_correct": false },
+          { "text": "الجدار السيليلوزي", "is_correct": false }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "اختبار: التركيب الضوئي",
+    "language": "ar",
+    "quiz_type": "lesson",
+    "linked_lesson_title": "التركيب الضوئي عند النباتات الخضراء",
+    "level": "bac1_sciences",
+    "status": "published",
+    "questions": [
+      {
+        "text": "ما هو الغاز الذي يُطرح خلال عملية التركيب الضوئي؟",
+        "order": 1,
+        "choices": [
+          { "text": "ثنائي الأكسجين $O_2$", "is_correct": true },
+          { "text": "ثنائي أكسيد الكربون $CO_2$", "is_correct": false },
+          { "text": "ثنائي الهيدروجين $H_2$", "is_correct": false },
+          { "text": "الأزوت $N_2$", "is_correct": false }
+        ]
+      },
+      {
+        "text": "أي صبغة نباتية تمتص الطاقة الضوئية اللازمة للتركيب الضوئي؟",
+        "order": 2,
+        "choices": [
+          { "text": "اليخضور (الكلوروفيل)", "is_correct": true },
+          { "text": "الگلوكوز", "is_correct": false },
+          { "text": "النشا", "is_correct": false },
+          { "text": "السيليلوز", "is_correct": false }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "امتحان تجريبي: الرياضيات - الجذع المشترك",
+    "language": "ar",
+    "quiz_type": "entrance_exam",
+    "level": "tronc_commun",
+    "status": "published",
+    "questions": [
+      {
+        "text": "حل المعادلة $3x - 9 = 0$ هو:",
+        "order": 1,
+        "choices": [
+          { "text": "$x = 3$", "is_correct": true },
+          { "text": "$x = -3$", "is_correct": false },
+          { "text": "$x = 9$", "is_correct": false },
+          { "text": "$x = 0$", "is_correct": false }
+        ]
+      },
+      {
+        "text": "مجموعة حلول المتراجحة $-2x > 4$ هي:",
+        "order": 2,
+        "choices": [
+          { "text": "$\\left]-\\infty, -2\\right[$", "is_correct": true },
+          { "text": "$\\left]-2, +\\infty\\right[$", "is_correct": false },
+          { "text": "$\\left]2, +\\infty\\right[$", "is_correct": false },
+          { "text": "$\\left]-\\infty, 2\\right[$", "is_correct": false }
+        ]
+      },
+      {
+        "text": "ما هي قيمة $2^3 + 3^2$؟",
+        "order": 3,
+        "choices": [
+          { "text": "$17$", "is_correct": true },
+          { "text": "$15$", "is_correct": false },
+          { "text": "$12$", "is_correct": false },
+          { "text": "$36$", "is_correct": false }
+        ]
+      }
+    ]
+  }
+]
