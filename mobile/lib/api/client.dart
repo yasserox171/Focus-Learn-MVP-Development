@@ -17,9 +17,11 @@ class ApiException implements Exception {
 
 /// HTTP client for the Focus Learn API with JWT auth and automatic
 /// access-token refresh. The server URL is configurable at runtime
-/// (default targets the Android emulator's host loopback).
+/// (default targets a backend running on the same phone, e.g. Termux;
+/// use http://10.0.2.2:8000 from the Android emulator).
 class ApiClient {
-  static const _defaultBaseUrl = 'http://10.0.2.2:8000';
+  static const _defaultBaseUrl = 'http://127.0.0.1:8000';
+  static const _requestTimeout = Duration(seconds: 12);
 
   String baseUrl = _defaultBaseUrl;
   String? _access;
@@ -78,11 +80,15 @@ class ApiClient {
     final encoded = body == null ? null : jsonEncode(body);
     switch (method) {
       case 'GET':
-        response = await http.get(uri, headers: _headers());
+        response = await http.get(uri, headers: _headers()).timeout(_requestTimeout);
       case 'POST':
-        response = await http.post(uri, headers: _headers(), body: encoded);
+        response = await http
+            .post(uri, headers: _headers(), body: encoded)
+            .timeout(_requestTimeout);
       case 'PATCH':
-        response = await http.patch(uri, headers: _headers(), body: encoded);
+        response = await http
+            .patch(uri, headers: _headers(), body: encoded)
+            .timeout(_requestTimeout);
       default:
         throw ArgumentError('Unsupported method $method');
     }
@@ -104,11 +110,13 @@ class ApiClient {
 
   Future<bool> _tryRefresh() async {
     try {
-      final response = await http.post(
-        _uri('/auth/refresh/'),
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({'refresh': _refresh}),
-      );
+      final response = await http
+          .post(
+            _uri('/auth/refresh/'),
+            headers: {'Content-Type': 'application/json'},
+            body: jsonEncode({'refresh': _refresh}),
+          )
+          .timeout(_requestTimeout);
       if (response.statusCode != 200) return false;
       final data = jsonDecode(response.body) as Map<String, dynamic>;
       await _storeTokens(
