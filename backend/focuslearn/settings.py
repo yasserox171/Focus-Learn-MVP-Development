@@ -80,6 +80,10 @@ else:
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
             "NAME": BASE_DIR / "db.sqlite3",
+            # Wait up to 20s for a write lock instead of failing immediately
+            # with "database is locked" under concurrent requests (batch
+            # import + token refresh racing on the threaded dev server).
+            "OPTIONS": {"timeout": 20},
         }
     }
 
