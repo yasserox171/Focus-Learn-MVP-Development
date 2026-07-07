@@ -39,6 +39,7 @@ export type ContentBlock =
 
 export interface LessonListItem {
   id: number;
+  slug: string;
   title: string;
   language: ContentLanguage;
   subject: Subject;
@@ -71,6 +72,7 @@ export interface Question {
 
 export interface QuizListItem {
   id: number;
+  slug: string;
   title: string;
   language: ContentLanguage;
   lesson: number | null;

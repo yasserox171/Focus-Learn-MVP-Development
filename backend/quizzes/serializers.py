@@ -45,6 +45,7 @@ class QuizListSerializer(serializers.ModelSerializer):
         model = Quiz
         fields = [
             "id",
+            "slug",
             "title",
             "language",
             "lesson",
@@ -81,6 +82,7 @@ class QuizAdminSerializer(serializers.ModelSerializer):
         model = Quiz
         fields = [
             "id",
+            "slug",
             "title",
             "language",
             "lesson",
@@ -92,6 +94,7 @@ class QuizAdminSerializer(serializers.ModelSerializer):
             "questions",
             "created_at",
         ]
+        read_only_fields = ["slug"]
 
     def validate_questions(self, value):
         for i, question in enumerate(value):

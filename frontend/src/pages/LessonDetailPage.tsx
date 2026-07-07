@@ -6,6 +6,7 @@ import api from '../api/client';
 import type { Lesson, Paginated, QuizListItem } from '../api/types';
 import { useAuth } from '../auth/AuthContext';
 import BlockRenderer from '../components/BlockRenderer';
+import Seo, { toDescription } from '../components/Seo';
 import YouTubeEmbed from '../components/YouTubeEmbed';
 import { refName } from './LessonsPage';
 
@@ -35,8 +36,20 @@ export default function LessonDetailPage() {
   // The lesson body follows its own content language, independent of the UI
   const contentDir = lesson.language === 'ar' ? 'rtl' : 'ltr';
 
+  const firstText = lesson.content.blocks.find(
+    (b) => b.type === 'paragraph' || b.type === 'heading',
+  );
+  const description =
+    firstText && 'text' in firstText ? toDescription(firstText.text) : undefined;
+
   return (
     <article className="lesson-detail">
+      <Seo
+        title={lesson.title}
+        description={description}
+        canonicalPath={`/lesson/${lesson.slug}/`}
+        lang={lesson.language}
+      />
       <div className="card-badges">
         <span className="badge badge-subject">{refName(lesson.subject, uiLang)}</span>
         <span className="badge">{refName(lesson.level, uiLang)}</span>

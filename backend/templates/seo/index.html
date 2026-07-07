@@ -1,0 +1,34 @@
+{% extends "seo/base.html" %}
+
+{% block content %}
+<div class="content">
+  <h1>Focus Learn — دروس واختبارات تفاعلية</h1>
+  <p>{{ page_description }}</p>
+
+  <a class="cta" href="{{ app_link }}">ادخل إلى المنصة</a>
+
+  {% if combos %}
+  <section>
+    <h2>تصفّح حسب المادة والمستوى</h2>
+    <div class="grid">
+      {% for c in combos %}
+        <a class="card" href="/lessons/{{ c.subject.slug }}/{{ c.level.slug }}/">
+          {{ c.subject.name_ar }} — {{ c.level.name_ar }}
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  {% if recent %}
+  <section>
+    <h2>أحدث الدروس</h2>
+    <div class="grid">
+      {% for lesson in recent %}
+        <a class="card" href="/lesson/{{ lesson.slug }}/">{{ lesson.title }}</a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+</div>
+{% endblock %}

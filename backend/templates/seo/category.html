@@ -1,0 +1,43 @@
+{% extends "seo/base.html" %}
+
+{% block content %}
+<div class="content">
+  <div class="badges">
+    <span class="badge">{{ subject_ar }}</span>
+    <span class="badge">{{ level_ar }}</span>
+  </div>
+  <h1>دروس واختبارات {{ subject_ar }} — {{ level_ar }}</h1>
+  <p>{{ page_description }}</p>
+
+  {% if lessons %}
+  <section>
+    <h2>الدروس</h2>
+    <div class="grid">
+      {% for lesson in lessons %}
+        <a class="card" href="/lesson/{{ lesson.slug }}/">
+          {{ lesson.title }}
+          <div class="muted">{{ lesson.language|upper }}</div>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  {% if quizzes %}
+  <section>
+    <h2>الاختبارات</h2>
+    <div class="grid">
+      {% for quiz in quizzes %}
+        <a class="card" href="/quiz/{{ quiz.slug }}/">{{ quiz.title }}</a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  {% if not lessons and not quizzes %}
+    <p class="muted">لا يوجد محتوى منشور بعد في هذه الفئة.</p>
+  {% endif %}
+
+  <a class="cta" href="{{ app_link }}">تصفّح كل الدروس على المنصة</a>
+</div>
+{% endblock %}

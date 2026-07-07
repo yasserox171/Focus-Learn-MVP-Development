@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import api from '../api/client';
 import type { LessonListItem, Level, Paginated, Subject } from '../api/types';
+import Seo from '../components/Seo';
 
 export function useRefData() {
   const [subjects, setSubjects] = useState<Subject[]>([]);
@@ -39,6 +40,10 @@ export default function LessonsPage() {
 
   return (
     <div>
+      <Seo
+        title={t('lessons.title')}
+        description="تصفّح دروس واختبارات Focus Learn في الرياضيات والفيزياء وعلوم الحياة والأرض حسب المادة والمستوى واللغة."
+      />
       <h1 className="page-title">{t('lessons.title')}</h1>
       <div className="filters">
         <select

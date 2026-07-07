@@ -1,0 +1,44 @@
+{% extends "seo/base.html" %}
+
+{% block content %}
+<article class="content">
+  <div class="badges">
+    <span class="badge">{{ level_name }}</span>
+    <span class="badge">{{ quiz.language|upper }}</span>
+    <span class="badge">{{ questions|length }} {% if lang == "ar" %}سؤال{% else %}questions{% endif %}</span>
+  </div>
+  <h1>{{ quiz.title }}</h1>
+
+  {% if quiz.lesson %}
+    <p class="muted">
+      {% if lang == "ar" %}مرتبط بدرس:{% else %}Lié à la leçon :{% endif %}
+      <a href="/lesson/{{ quiz.lesson.slug }}/">{{ quiz.lesson.title }}</a>
+    </p>
+  {% endif %}
+
+  <a class="cta" href="{{ app_link }}">
+    {% if lang == "ar" %}ابدأ الاختبار التفاعلي{% else %}Commencer le quiz{% endif %}
+  </a>
+
+  <section>
+    {% for q in questions %}
+      <div class="qcard">
+        <strong>{{ forloop.counter }}. {{ q.text }}</strong>
+        <ul>
+          {% for choice in q.choices.all %}
+            <li>{{ choice.text }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  </section>
+
+  <p class="muted">
+    {% if lang == "ar" %}
+      الأجوبة الصحيحة والتصحيح الفوري متوفران في الاختبار التفاعلي.
+    {% else %}
+      Les bonnes réponses et la correction instantanée sont dans le quiz interactif.
+    {% endif %}
+  </p>
+</article>
+{% endblock %}

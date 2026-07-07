@@ -1,0 +1,70 @@
+{% extends "seo/base.html" %}
+
+{% block content %}
+<article class="content">
+  <div class="badges">
+    <span class="badge">{{ subject_name }}</span>
+    <span class="badge">{{ level_name }}</span>
+    <span class="badge">{{ lesson.language|upper }}</span>
+  </div>
+  <h1>{{ lesson.title }}</h1>
+
+  {% for block in blocks %}
+    {% if block.type == "heading" %}
+      <h2>{{ block.text }}</h2>
+    {% elif block.type == "paragraph" %}
+      <p>{{ block.text }}</p>
+    {% elif block.type == "latex" %}
+      <div class="latex-block">$${{ block.text }}$$</div>
+    {% elif block.type == "image" %}
+      <figure>
+        <img src="{{ block.url }}" alt="{{ block.caption|default:lesson.title }}" loading="lazy" />
+        {% if block.caption %}<figcaption>{{ block.caption }}</figcaption>{% endif %}
+      </figure>
+    {% elif block.type == "video" %}
+      {% if block.youtube_id %}
+        <a class="video-thumb" href="https://www.youtube.com/watch?v={{ block.youtube_id }}" rel="noopener">
+          <img src="https://img.youtube.com/vi/{{ block.youtube_id }}/hqdefault.jpg" alt="{{ lesson.title }}" loading="lazy" />
+        </a>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  {% if video_id %}
+    <h2>{% if lang == "ar" %}فيديو الدرس{% else %}Vidéo de la leçon{% endif %}</h2>
+    <a class="video-thumb" href="{{ lesson.video_url }}" rel="noopener">
+      <img src="https://img.youtube.com/vi/{{ video_id }}/hqdefault.jpg" alt="{{ lesson.title }}" loading="lazy" />
+    </a>
+  {% endif %}
+
+  <a class="cta" href="{{ app_link }}">
+    {% if lang == "ar" %}افتح الدرس التفاعلي{% else %}Ouvrir la leçon interactive{% endif %}
+  </a>
+
+  {% if quizzes %}
+  <section>
+    <h2>{% if lang == "ar" %}اختبارات هذا الدرس{% else %}Quiz de cette leçon{% endif %}</h2>
+    {% for quiz in quizzes %}
+      <a class="card" href="/quiz/{{ quiz.slug }}/">{{ quiz.title }}</a>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  {% if related %}
+  <section>
+    <h2>{% if lang == "ar" %}دروس ذات صلة{% else %}Leçons similaires{% endif %}</h2>
+    <div class="grid">
+      {% for r in related %}
+        <a class="card" href="/lesson/{{ r.slug }}/">{{ r.title }}</a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  <p class="muted">
+    <a href="/lessons/{{ lesson.subject.slug }}/{{ lesson.level.slug }}/">
+      {% if lang == "ar" %}المزيد في {{ subject_name }} — {{ level_name }}{% else %}Plus en {{ subject_name }} — {{ level_name }}{% endif %}
+    </a>
+  </p>
+</article>
+{% endblock %}

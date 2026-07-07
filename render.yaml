@@ -1,0 +1,38 @@
+# Render.com blueprint: Django backend (API + server-rendered SEO pages)
+# plus a managed PostgreSQL database. Deploy by connecting the repo on
+# render.com and choosing "New Blueprint". Set SITE_URL / FRONTEND_URL /
+# CORS_ALLOWED_ORIGINS / CSRF_TRUSTED_ORIGINS to your real domain afterwards.
+databases:
+  - name: focuslearn-db
+    plan: free
+    databaseName: focuslearn
+    user: focuslearn
+
+services:
+  - type: web
+    name: focuslearn-backend
+    runtime: python
+    plan: starter # always-on; avoid "free" which sleeps and hurts crawling
+    rootDir: backend
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn focuslearn.wsgi --workers 3 --bind 0.0.0.0:$PORT"
+    healthCheckPath: /robots.txt
+    envVars:
+      - key: DJANGO_DEBUG
+        value: "0"
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: focuslearn-db
+          property: connectionString
+      - key: DJANGO_ALLOWED_HOSTS
+        sync: false # e.g. focuslearn.com,www.focuslearn.com
+      - key: SITE_URL
+        sync: false # e.g. https://focuslearn.com
+      - key: FRONTEND_URL
+        sync: false # e.g. https://app.focuslearn.com
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false
+      - key: CSRF_TRUSTED_ORIGINS
+        sync: false

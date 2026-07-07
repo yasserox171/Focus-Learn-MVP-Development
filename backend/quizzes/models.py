@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.db import models
 
-from content.models import Lesson, Level
+from content.models import Lesson, Level, unique_slug
 
 
 class Quiz(models.Model):
@@ -10,6 +10,7 @@ class Quiz(models.Model):
     STATUS_CHOICES = [("draft", "Draft"), ("published", "Published")]
 
     title = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=280, unique=True, blank=True)
     language = models.CharField(max_length=2, choices=LANGUAGE_CHOICES)
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="quizzes"
@@ -27,6 +28,11 @@ class Quiz(models.Model):
     class Meta:
         ordering = ["-created_at"]
         verbose_name_plural = "quizzes"
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = unique_slug(Quiz, self.title, self.language, self.pk)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.title} [{self.language}]"

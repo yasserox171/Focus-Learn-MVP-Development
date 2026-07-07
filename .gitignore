@@ -5,6 +5,9 @@ __pycache__/
 .venv/
 venv/
 
+# Django collected static (build output)
+staticfiles/
+
 # Node
 node_modules/
 dist/

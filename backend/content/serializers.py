@@ -26,6 +26,7 @@ class LessonListSerializer(serializers.ModelSerializer):
         model = Lesson
         fields = [
             "id",
+            "slug",
             "title",
             "language",
             "subject",
@@ -55,6 +56,7 @@ class LessonSerializer(serializers.ModelSerializer):
         model = Lesson
         fields = [
             "id",
+            "slug",
             "title",
             "language",
             "subject",
@@ -70,6 +72,7 @@ class LessonSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
         ]
+        read_only_fields = ["slug"]
 
     def validate_content(self, value):
         if not isinstance(value, dict) or not isinstance(value.get("blocks"), list):

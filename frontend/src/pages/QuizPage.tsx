@@ -6,6 +6,7 @@ import api from '../api/client';
 import type { Quiz, SubmitResult } from '../api/types';
 import { useAuth } from '../auth/AuthContext';
 import MathText from '../components/MathText';
+import Seo from '../components/Seo';
 
 export default function QuizPage() {
   const { id } = useParams();
@@ -50,6 +51,14 @@ export default function QuizPage() {
 
   return (
     <div className="quiz-page" dir={dir}>
+      <Seo
+        title={quiz.title}
+        description={`${quiz.title} — ${quiz.questions.length} ${
+          quiz.language === 'ar' ? 'أسئلة' : 'questions'
+        }`}
+        canonicalPath={`/quiz/${quiz.slug}/`}
+        lang={quiz.language}
+      />
       <h1>{quiz.title}</h1>
 
       {result && (

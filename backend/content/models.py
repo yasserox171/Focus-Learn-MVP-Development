@@ -1,5 +1,24 @@
 from django.conf import settings
 from django.db import models
+from slugify import slugify
+
+
+def unique_slug(model, title, language, instance_pk=None):
+    """Build a URL-safe, unique slug from a title.
+
+    Latin transliteration keeps URLs clean for both Arabic and French
+    content (e.g. "المعادلات" -> "almeadlat"), which search engines and
+    users handle better than percent-encoded Arabic. Falls back to the
+    language + pk if a title has no transliterable characters.
+    """
+    base = slugify(title) or f"{language}"
+    slug = base
+    counter = 2
+    qs = model.objects.exclude(pk=instance_pk) if instance_pk else model.objects.all()
+    while qs.filter(slug=slug).exists():
+        slug = f"{base}-{counter}"
+        counter += 1
+    return slug
 
 
 class Subject(models.Model):
@@ -29,6 +48,7 @@ class Lesson(models.Model):
     STATUS_CHOICES = [("draft", "Draft"), ("published", "Published")]
 
     title = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=280, unique=True, blank=True)
     language = models.CharField(max_length=2, choices=LANGUAGE_CHOICES)
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="lessons"
@@ -47,6 +67,11 @@ class Lesson(models.Model):
 
     class Meta:
         ordering = ["-created_at"]
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = unique_slug(Lesson, self.title, self.language, self.pk)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.title} [{self.language}]"

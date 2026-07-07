@@ -1,11 +1,14 @@
 """Focus Learn URL configuration."""
 
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenRefreshView
 
 from accounts.views import LoginView, MeView, RegisterView
+from content import seo_views
+from content.sitemaps import SITEMAPS
 from content.views import (
     AdminDashboardView,
     ExportView,
@@ -40,4 +43,15 @@ urlpatterns = [
     path("api/admin/dashboard/", AdminDashboardView.as_view(), name="admin-dashboard"),
     # Resource routes (read for everyone, write for admin)
     path("api/", include(router.urls)),
+    # --- SEO: server-rendered public pages + sitemap/robots ---
+    path("sitemap.xml", sitemap, {"sitemaps": SITEMAPS}, name="sitemap"),
+    path("robots.txt", seo_views.robots_txt, name="robots"),
+    path("lesson/<slug:slug>/", seo_views.lesson_page, name="seo-lesson"),
+    path("quiz/<slug:slug>/", seo_views.quiz_page, name="seo-quiz"),
+    path(
+        "lessons/<slug:subject_slug>/<slug:level_slug>/",
+        seo_views.category_page,
+        name="seo-category",
+    ),
+    path("", seo_views.seo_index, name="seo-index"),
 ]
